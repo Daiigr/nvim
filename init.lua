@@ -1,0 +1,7 @@
+require('plugins')
+require('mason-config')
+require('code-completion')
+require('statusbar')
+require('toggleline')
+require('treesitter')
+require('colortheme')
