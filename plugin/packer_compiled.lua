@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/Users/daniel/.cache/nvim/packer_hererocks/2.1.1696795921/share/lua/5.1/?.lua;/Users/daniel/.cache/nvim/packer_hererocks/2.1.1696795921/share/lua/5.1/?/init.lua;/Users/daniel/.cache/nvim/packer_hererocks/2.1.1696795921/lib/luarocks/rocks-5.1/?.lua;/Users/daniel/.cache/nvim/packer_hererocks/2.1.1696795921/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/Users/daniel/.cache/nvim/packer_hererocks/2.1.1696795921/lib/lua/5.1/?.so"
+local package_path_str = "/Users/daniel/.cache/nvim/packer_hererocks/2.1.1699180677/share/lua/5.1/?.lua;/Users/daniel/.cache/nvim/packer_hererocks/2.1.1699180677/share/lua/5.1/?/init.lua;/Users/daniel/.cache/nvim/packer_hererocks/2.1.1699180677/lib/luarocks/rocks-5.1/?.lua;/Users/daniel/.cache/nvim/packer_hererocks/2.1.1699180677/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/Users/daniel/.cache/nvim/packer_hererocks/2.1.1699180677/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -79,6 +79,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/daniel/.local/share/nvim/site/pack/packer/start/alpha-nvim",
     url = "https://github.com/goolord/alpha-nvim"
+  },
+  ["bufferline.nvim"] = {
+    loaded = true,
+    path = "/Users/daniel/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
+    url = "https://github.com/akinsho/bufferline.nvim"
   },
   ["cmp-buffer"] = {
     loaded = true,
@@ -115,6 +120,15 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/daniel/.local/share/nvim/site/pack/packer/start/codewindow.nvim",
     url = "https://github.com/gorbit99/codewindow.nvim"
+  },
+  ["copilot.lua"] = {
+    commands = { "Copilot" },
+    config = { "\27LJ\2\n—\1\0\0\5\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\6\0005\3\3\0005\4\4\0=\4\5\3=\3\a\2B\0\2\1K\0\1\0\15suggestion\1\0\0\vkeymap\1\0\6\tprev\n<C-[>\vaccept\n<C-l>\fdismiss\n<C-]>\tnext\n<C-]>\16accept_line\1\16accept_word\1\1\0\3\rdebounce\3K\17auto_trigger\2\fenabled\2\nsetup\fcopilot\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/daniel/.local/share/nvim/site/pack/packer/opt/copilot.lua",
+    url = "https://github.com/zbirenbaum/copilot.lua"
   },
   ["indent-blankline.nvim"] = {
     loaded = true,
@@ -159,7 +173,7 @@ _G.packer_plugins = {
   },
   ["nvim-docs-view"] = {
     commands = { "DocsViewToggle" },
-    config = { "\27LJ\2\nU\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\nwidth\3<\rposition\nright\nsetup\14docs-view\frequire\0" },
+    config = { "\27LJ\2\nU\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\2\rposition\nright\nwidth\3<\nsetup\14docs-view\frequire\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -196,26 +210,10 @@ _G.packer_plugins = {
     path = "/Users/daniel/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
-  ["oxocarbon.nvim"] = {
-    loaded = true,
-    path = "/Users/daniel/.local/share/nvim/site/pack/packer/start/oxocarbon.nvim",
-    url = "https://github.com/nyoom-engineering/oxocarbon.nvim"
-  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/Users/daniel/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
-  },
-  ["poimandres.nvim"] = {
-    config = { "\27LJ\2\n<\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\15poimandres\frequire\0" },
-    loaded = true,
-    path = "/Users/daniel/.local/share/nvim/site/pack/packer/start/poimandres.nvim",
-    url = "https://github.com/olivercederborg/poimandres.nvim"
-  },
-  ["rose-pine"] = {
-    loaded = true,
-    path = "/Users/daniel/.local/share/nvim/site/pack/packer/start/rose-pine",
-    url = "https://github.com/rose-pine/neovim"
   },
   ["todo-comments.nvim"] = {
     loaded = true,
@@ -247,13 +245,16 @@ time([[Config for nvim-autopairs]], false)
 time([[Config for alpha-nvim]], true)
 try_loadstring("\27LJ\2\n`\0\0\5\0\5\0\n6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0029\2\4\2B\0\2\1K\0\1\0\vconfig\26alpha.themes.startify\nsetup\nalpha\frequire\0", "config", "alpha-nvim")
 time([[Config for alpha-nvim]], false)
--- Config for: poimandres.nvim
-time([[Config for poimandres.nvim]], true)
-try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\15poimandres\frequire\0", "config", "poimandres.nvim")
-time([[Config for poimandres.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
+pcall(vim.api.nvim_create_user_command, 'Copilot', function(cmdargs)
+          require('packer.load')({'copilot.lua'}, { cmd = 'Copilot', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'copilot.lua'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('Copilot ', 'cmdline')
+      end})
 pcall(vim.api.nvim_create_user_command, 'DocsViewToggle', function(cmdargs)
           require('packer.load')({'nvim-docs-view'}, { cmd = 'DocsViewToggle', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
@@ -263,6 +264,13 @@ pcall(vim.api.nvim_create_user_command, 'DocsViewToggle', function(cmdargs)
       end})
 time([[Defining lazy-load commands]], false)
 
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Event lazy-loads
+time([[Defining lazy-load event autocommands]], true)
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'copilot.lua'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+time([[Defining lazy-load event autocommands]], false)
+vim.cmd("augroup END")
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

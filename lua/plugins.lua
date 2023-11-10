@@ -30,18 +30,6 @@ use {
         require'alpha'.setup(require'alpha.themes.startify'.config)
     end
 }
-use { 
-  'olivercederborg/poimandres.nvim',
-  config = function()
-    require('poimandres').setup {
-      -- leave this setup function empty for default config
-      -- or refer to the configuration section
-      -- for configuration options
-    }
-  end
-}
-use {'nyoom-engineering/oxocarbon.nvim'}
-use({ 'rose-pine/neovim', as = 'rose-pine' })
 use "lukas-reineke/indent-blankline.nvim"
 -- Nvim tree so i can see my files
 use {
@@ -89,11 +77,11 @@ use {
     auto_trigger = true,
     debounce = 75,
     keymap = {
-      accept = "<M-l>",
+      accept = "<C-l>",
       accept_word = false,
       accept_line = false,
-      next = "<M-]>",
-      prev = "<M-[>",
+      next = "<C-]>",
+      prev = "<C-[>",
       dismiss = "<C-]>",
     },
   }
