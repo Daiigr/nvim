@@ -1,10 +1,13 @@
 return require('packer').startup(function(use)
+--- packer package manager 
 use 'wbthomason/packer.nvim'
 use 'williamboman/mason.nvim' 
 use 'wakatime/vim-wakatime'
 use 'nvim-tree/nvim-web-devicons'
 use 'williamboman/mason-lspconfig.nvim'
 use 'neovim/nvim-lspconfig'
+
+--- Completion Engine Plugins
 use 'hrsh7th/nvim-cmp' 
 use 'hrsh7th/cmp-nvim-lsp'
 use 'hrsh7th/cmp-nvim-lua'
@@ -13,7 +16,9 @@ use 'hrsh7th/cmp-vsnip'
 use 'hrsh7th/cmp-path'                              
 use 'hrsh7th/cmp-buffer'                            
 use 'hrsh7th/vim-vsnip'
+--- lualine 
 use {'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true }}
+
 use 'mfussenegger/nvim-dap'
 use 'sitiom/nvim-numbertoggle'
 use {'nvim-treesitter/nvim-treesitter', 
@@ -45,46 +50,27 @@ use {
     config = function() require("nvim-autopairs").setup {} end
 }
 
-use {
-  'gorbit99/codewindow.nvim',
-  config = function()
-    local codewindow = require('codewindow')
-    codewindow.setup()
-    codewindow.apply_default_keybinds()
-  end,
-}
-use {
-  "amrbashir/nvim-docs-view",
-  opt = true,
-  cmd = { "DocsViewToggle" },
-  config = function()
-    require("docs-view").setup {
-      position = "right",
-      width = 60,
-    }
-  end
-}
 use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
-
+use { "catppuccin/nvim", as = "catppuccin" }
 use {
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",
   event = "InsertEnter",
   config = function()
     require("copilot").setup({
-	      suggestion = {
+suggestion = {
     enabled = true,
-    auto_trigger = true,
+    auto_trigger = false,
     debounce = 75,
     keymap = {
-      accept = "<C-l>",
+      accept = "<M-l>",
       accept_word = false,
       accept_line = false,
-      next = "<C-]>",
-      prev = "<C-[>",
+      next = "<M-]>",
+      prev = "<M-[>",
       dismiss = "<C-]>",
-    },
-  }
+    }
+}
     })
   end,
 }

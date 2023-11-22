@@ -1,1 +1,2 @@
-vim.cmd.colorscheme "DarkyPurple"
+-- Lua initialization file
+vim.cmd.colorscheme "catppuccin"
