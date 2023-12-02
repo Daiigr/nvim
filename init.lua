@@ -1,12 +1,21 @@
 require('plugins')
-require('keymaps')
-require('mason-config')
-require('code-completion')
-require('statusbar')
-require('toggleline')
+-- check if lazy.nvim is installed
+BootstrapLazy()
+-- start lazy.nvim
+StartLazy()
+
+
+-- start mason
+require("mason").setup()
+
+-- start treesitter
 require('treesitter')
-require("ibl").setup()
-require('nvimtree')
-require('comments')
-require('bufline')
-require('colortheme')
+
+-- start Copilot 
+require('cpilot')
+
+-- start completion
+require('completion')
+
+-- lualine 
+require('lline')

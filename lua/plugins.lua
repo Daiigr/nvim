@@ -1,77 +1,49 @@
-return require('packer').startup(function(use)
---- packer package manager 
-use 'wbthomason/packer.nvim'
-use 'williamboman/mason.nvim' 
-use 'wakatime/vim-wakatime'
-use 'nvim-tree/nvim-web-devicons'
-use 'williamboman/mason-lspconfig.nvim'
-use 'neovim/nvim-lspconfig'
+-- This code checks if the 'lazy.nvim' plugin is installed. If not, it clones it from GitHub. Then it adds the plugin's path to Vim's runtime path.
+function BootstrapLazy()
+  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+  if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+  end
+  vim.opt.rtp:prepend(lazypath)
+end
 
---- Completion Engine Plugins
-use 'hrsh7th/nvim-cmp' 
-use 'hrsh7th/cmp-nvim-lsp'
-use 'hrsh7th/cmp-nvim-lua'
-use 'hrsh7th/cmp-nvim-lsp-signature-help'
-use 'hrsh7th/cmp-vsnip'                             
-use 'hrsh7th/cmp-path'                              
-use 'hrsh7th/cmp-buffer'                            
-use 'hrsh7th/vim-vsnip'
---- lualine 
-use {'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true }}
+-- this is the actual plugin configuration 
+function StartLazy()
+  require("lazy").setup(Plugins, opts)
+end
 
-use 'mfussenegger/nvim-dap'
-use 'sitiom/nvim-numbertoggle'
-use {'nvim-treesitter/nvim-treesitter', 
-run = function() 
-local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-ts_update()
-end,}
-use 'mfussenegger/nvim-lint'
-use "ray-x/lsp_signature.nvim"
-use {
-    'goolord/alpha-nvim',
-    requires = { 'nvim-tree/nvim-web-devicons' },
-    config = function ()
-        require'alpha'.setup(require'alpha.themes.startify'.config)
-    end
-}
-use "lukas-reineke/indent-blankline.nvim"
--- Nvim tree so i can see my files
-use {
-  'nvim-tree/nvim-tree.lua',
-  requires = {
-    'nvim-tree/nvim-web-devicons', -- optional
-  },
-}
+-- this is the list of plugins that will be loaded
+Plugins = {
+  {"folke/todo-comments.nvim", opt = true},
+  -- mason.nvim 
+   {"williamboman/mason.nvim", opt = true},
+  -- lsp config
+  {"neovim/nvim-lspconfig"},
+  
+  -- tree-sitter
+  {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"},
+  {"nvim-treesitter/nvim-treesitter-textobjects"},
 
-use {"folke/todo-comments.nvim"}
-use {
-	"windwp/nvim-autopairs",
-    config = function() require("nvim-autopairs").setup {} end
-}
 
-use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
-use { "catppuccin/nvim", as = "catppuccin" }
-use {
-  "zbirenbaum/copilot.lua",
-  cmd = "Copilot",
-  event = "InsertEnter",
-  config = function()
-    require("copilot").setup({
-suggestion = {
-    enabled = true,
-    auto_trigger = false,
-    debounce = 75,
-    keymap = {
-      accept = "<M-l>",
-      accept_word = false,
-      accept_line = false,
-      next = "<M-]>",
-      prev = "<M-[>",
-      dismiss = "<C-]>",
-    }
+  -- nvim-cmp (completion)
+  {"hrsh7th/nvim-cmp"},
+  {"hrsh7th/cmp-buffer"},
+  {"hrsh7th/cmp-nvim-lsp"},
+  {"hrsh7th/cmp-nvim-lua"},
+  {"hrsh7th/cmp-path"},
+  {"hrsh7th/cmp-vsnip"},
+  {"zbirenbaum/copilot-cmp"},
+  --lualine 
+  {"hoob3rt/lualine.nvim", requires = {"kyazdani42/nvim-web-devicons", opt = true}},
+  -- bufferline
+  {"akinsho/nvim-bufferline.lua", requires = "kyazdani42/nvim-web-devicons"},
+  --copilot.lua zbirenbaum
+  {"zbirenbaum/copilot.lua"},
 }
-    })
-  end,
-}
-end)
